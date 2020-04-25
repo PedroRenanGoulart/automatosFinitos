@@ -20,7 +20,7 @@ def eh_deterministic0(automato):
 
 # Recebe estrutura de automato deterministico e as cadeias. para cada cadeia printa aceito ou rejeita
 def avalia_cadeias(automato, terminais, estados_iniciais, estados_aceitacao, cadeias):
-    processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, cadeias)
+    return processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, cadeias)
 
     
 
