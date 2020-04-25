@@ -6,7 +6,6 @@ def leEntrada():
     loaded = f.read()
     f.close()
 
-
     loadedSplit = loaded.split("\n")
     quantidadeEstadoInicial = int(loadedSplit[2])
     estadosIniciais = [str(x) for x in range(0,quantidadeEstadoInicial)]
@@ -88,28 +87,59 @@ def leEntrada():
     
     return dictTransicoes,dictEntrada,deterministico
     
-# def trasformaDeterministico(dictTransicoes,dictEntrada):
-#     entradas = dictEntrada.get("Estados_Iniciais")
-#     terminais = dictEntrada.get("Terminais")
-#     # estadoInicial = "+".join(entradas)
-#     estadosProcessados = entradas.sort()
-#     estadosNãoProcessados [] 
-#     dictEstadosTerminais = {terminal:[] for terminal in terminais}
-#     for estado in entradas:
-#         print(estado)
-#         transicoes = dictTransicoes.get(estado).get("Transicoes")
-#         if len(transicoes) > 0:
-#             for transicaoAtual in transicoes:
-#                 print(transicaoAtual)
-#                 for estadoTransicaoAtual in transicoes.get(transicaoAtual):
-#                     print(estadoTransicaoAtual)
-#                     if estadoTransicaoAtual not in dictEstadosTerminais.get(transicaoAtual):
-#                         dictEstadosTerminais.get(transicaoAtual).append(estadoTransicaoAtual)
-#                 print(dictEstadosTerminais.get(transicaoAtual))
-#                 print(transicoes.get(transicaoAtual))
-    
-#     print("a")
+def trasformaDeterministico(dictTransicoes,dictEntrada):
+    dictTransicoesNovo = {}
+    entradas = dictEntrada.get("Estados_Iniciais")
+    terminais = dictEntrada.get("Terminais")
+    Estados_Aceitacao = dictEntrada.get("Estados_Aceitacao")
+    entradas.sort()
+    estadoInicial = "+".join(entradas)
+    estadosProcessados = []
+    estadosNaoProcessados = [] 
+    estadosNaoProcessados.append(estadoInicial)
+    inicial = estadoInicial
 
+    while len(estadosNaoProcessados) > 0:
+        estadoAtual = estadosNaoProcessados.pop()
+        estadosProcessados.append(estadoAtual)
+        dictEstadosTerminais = {terminal:[] for terminal in terminais}
+        for estado in estadoAtual.split("+"):
+            transicoes = dictTransicoes.get(estado).get("Transicoes")
+            if len(transicoes) > 0:
+                for transicaoAtual in transicoes:
+                    for estadoTransicaoAtual in transicoes.get(transicaoAtual):
+                        if estadoTransicaoAtual not in dictEstadosTerminais.get(transicaoAtual):
+                            dictEstadosTerminais.get(transicaoAtual).append(estadoTransicaoAtual)
+                            
+        dictTransicoesNovo.update({
+            estadoAtual : {
+                "Transicoes" : {}
+            }
+        })      
+        for x in dictEstadosTerminais:
+            # if cmp()
+            termianalAtual = dictEstadosTerminais.get(x)
+            if len(termianalAtual) > 0:
+                termianalAtual.sort()
+                estadoTratadoAutal = "+".join(termianalAtual)
+                dictTransicoesNovo.get(estadoAtual).get("Transicoes").update({
+                    x : [estadoTratadoAutal]
+                })
+                if estadoTratadoAutal not in estadosProcessados:
+                    estadosNaoProcessados.append(estadoTratadoAutal)
+    
+    Estados_AceitacaoNovo = []
+    for x in dictTransicoesNovo:
+        for aceito in Estados_Aceitacao:
+            if aceito in x:
+                Estados_AceitacaoNovo.append(x)
+    print(dictEntrada)
+    dictEntrada.update({
+        "Estados_Iniciais" : [inicial],
+        "Estados_Aceitacao" : Estados_AceitacaoNovo
+    })
+    
+    return dictTransicoesNovo,dictEntrada
 # dictTransicoes,dictEntrada,derteminisico = leEntrada()
 # trasformaDeterministico(dictTransicoes,dictEntrada)
 
