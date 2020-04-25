@@ -42,7 +42,7 @@ def leEntrada():
                 }
             })
         
-    deterministico = True    
+    deterministico = True
     for estado in dictTransicoes:
         if estado in dictEntrada.get("Estados_Iniciais"):
             incial = True
@@ -57,7 +57,7 @@ def leEntrada():
         transicoes = dictTransicoes.get(estado).get("Transicoes")
         for transicao in transicoes:
             transicaoAtual = transicoes.get(transicao)
-            print(transicaoAtual)
+            # print(transicaoAtual)
             if len(transicaoAtual) > 1:
                 deterministico = False
         dictTransicoes.get(estado).update({
