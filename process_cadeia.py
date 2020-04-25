@@ -32,7 +32,7 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
                 break
 
             estado = caminho_estados[i].get('estado')
-            estado = estado[0]
+            # estado = estado[0]
 
             proximo_passo = get_proximo_passo(automato, estado, processando)
             # print(proximo_passo)
