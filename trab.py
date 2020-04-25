@@ -2,7 +2,7 @@ from automato import leEntrada
 from process_cadeia import processa_cadeia
 import pprint
 from automato import trasformaDeterministico
-pp = pprint.PrettyPrinter(indent=4)
+# pp = pprint.PrettyPrinter(indent=4)
 
 # Lê entrada e retorna string
 def le_entrada():
