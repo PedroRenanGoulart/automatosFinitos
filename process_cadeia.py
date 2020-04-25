@@ -1,4 +1,5 @@
 def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, cadeias):
+    result = []
     for index_cadeia in range(len(cadeias)):
         cadeia = cadeias[index_cadeia][0]
         # print("PROCESSANDO CADEIA: ", cadeia)
@@ -16,6 +17,7 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
             if processando == '-':
                 # print(index_cadeia + 1, ". Cadeia: ", cadeia, "rejeitada \n")
                 print("rejeita")
+                result.append("rejeita")
                 rejected = True
                 break
             # print("----- index: ", i, "-----")
@@ -28,6 +30,7 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
             if caminho_estados[i - 1] == "REJECT":
                 # print(index_cadeia + 1, ". Cadeia: ", cadeia, "rejeitada \n")
                 print("rejeita")
+                result.append("rejeita")
                 rejected = True
                 break
 
@@ -39,6 +42,7 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
             if proximo_passo == "ERROR_KEY_TRANSICOES" or proximo_passo == "ERROR_KEY_FINAL" or proximo_passo == "REJECT":
                 # print("NÃO ACHOU  A TRANSIÇÃO PARA ", processando, "NO ESTADO ", estado)
                 print("rejeita")
+                result.append("rejeita")
                 rejected = True
                 break
 
@@ -49,6 +53,7 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
             if proximo_passo == "STATE_NOT_FOUND":
                 # print(index_cadeia + 1, ". Cadeia: ", cadeia, "rejeitada \n")
                 print("rejeita")
+                result.append("rejeita")
                 rejected = True
                 break
             #Se for processar uma variável que não está nas variáveis terminais
@@ -56,6 +61,7 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
             if processando not in terminais:
                 # print(index_cadeia + 1, ". Cadeia: ", cadeia, "rejeitada \n")
                 print("rejeita")
+                result.append("rejeita")
                 rejected = True
 
         # print("CAMINHO PROCESSADO: ", caminho_estados)
@@ -67,11 +73,14 @@ def processa_cadeia(automato, terminais, estados_iniciais, estados_aceitacao, ca
             if estado_final_da_cadeia not in estados_aceitacao:
                 # print(index_cadeia + 1, ". Cadeia: ", cadeia, "rejeitada \n")
                 print("rejeita")
+                result.append("rejeita")
             else:
                 # print(index_cadeia + 1, ". Cadeia: ", cadeia, "aceita \n")
                 print("aceita")
+                result.append("aceita")
         
         caminho_estados = []
+    return result
 
 
 def get_no_inicial(automato, estado_inicial):
