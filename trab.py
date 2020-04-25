@@ -1,7 +1,8 @@
+from automato import leEntrada
 # Lê entrada e retorna string
 def le_entrada():
-    pass
-
+    dictTransicoes,dictEntrada,deterministico = leEntrada()
+    return dictTransicoes,dictEntrada,deterministico
 
 # Pega string de entrada e retorna estrutura definida
 def entrada_para_estrutura(entrada):
@@ -24,11 +25,11 @@ def transforma_em_deterministico(automato_nao_deterministico):
 
 
 if __name__ == '__main__':
-    entrada = le_entrada()
+    dictTransicoes,dictEntrada,deterministico = le_entrada()
     automato = entrada_para_estrutura()
     if eh_deterministico(automato):
         avalia_automato_deterministico(automato)
-    else
+    else:
         avalia_automato_deterministico(
             transforma_em_deterministico(automato)
         )
