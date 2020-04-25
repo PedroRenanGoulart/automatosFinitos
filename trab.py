@@ -46,6 +46,14 @@ if __name__ == '__main__':
     
     result = avalia_cadeias(dictTransicoes, dictEntrada.get("Terminais"), dictEntrada.get("Estados_Iniciais"), dictEntrada.get("Estados_Aceitacao"), dictEntrada.get("Cadeias"))
     print(result)
+    
+    path = "./"
+    arquivo = "saida.txt"
+    result = "\n".join(result)
+    f = open(path+arquivo,"w")
+    f.writelines(result)
+    f.close()
+    
     # if eh_deterministico(automato):
     #     avalia_automato_deterministico(automato)
     # else:
