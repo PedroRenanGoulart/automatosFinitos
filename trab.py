@@ -1,6 +1,7 @@
 from automato import leEntrada
 from process_cadeia import processa_cadeia
 import pprint
+from automato import trasformaDeterministico
 pp = pprint.PrettyPrinter(indent=4)
 
 # Lê entrada e retorna string
@@ -26,13 +27,15 @@ def avalia_cadeias(automato, terminais, estados_iniciais, estados_aceitacao, cad
 
 
 # Recebe um automato nao deterministico e retorna um automato deterministico equivalente
-def transforma_em_deterministico(automato_nao_deterministico):
-    pass
+def transforma_em_deterministico(dictTransicoes,dictEntrada):
+    return trasformaDeterministico(dictTransicoes,dictEntrada)
 
 
 if __name__ == '__main__':
     dictTransicoes, dictEntrada, deterministico = le_entrada()
     print("\n")
+    if not deterministico:
+        dictTransicoes,dictEntrada = transforma_em_deterministico(dictTransicoes,dictEntrada)
     # pp.pprint(dictTransicoes)
     # print("\n")
     # print(dictEntrada)
