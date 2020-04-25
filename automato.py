@@ -7,8 +7,6 @@ def leEntrada():
     f.close()
 
     loadedSplit = loaded.split("\n")
-    print(loadedSplit[5:5+int(loadedSplit[4])])
-    print(loadedSplit[5+int(loadedSplit[4]):])
     dictEntrada = {
         "N_Estados" : loadedSplit[0],
         "N_Terminais" : loadedSplit[1].split(" ")[0],
@@ -23,8 +21,6 @@ def leEntrada():
         "Cadeias" : [cadeia.split(" ") for cadeia in loadedSplit[6+int(loadedSplit[4]):]],
 
         }
-    print(dictEntrada)
-    print(dictEntrada)
     dictTransicoes = {}
     for transicao in dictEntrada.get("Transicoes"):
         estadoAtual = dictTransicoes.get(transicao[0])

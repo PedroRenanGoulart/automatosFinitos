@@ -26,6 +26,7 @@ def transforma_em_deterministico(automato_nao_deterministico):
 
 if __name__ == '__main__':
     dictTransicoes,dictEntrada,deterministico = le_entrada()
+    print(dictTransicoes,dictEntrada,deterministico )
     automato = entrada_para_estrutura()
     if eh_deterministico(automato):
         avalia_automato_deterministico(automato)
