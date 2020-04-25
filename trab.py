@@ -44,7 +44,8 @@ if __name__ == '__main__':
     
     # automato = gera_automato()
     
-    avalia_cadeias(dictTransicoes, dictEntrada.get("Terminais"), dictEntrada.get("Estados_Iniciais"), dictEntrada.get("Estados_Aceitacao"), dictEntrada.get("Cadeias"))
+    result = avalia_cadeias(dictTransicoes, dictEntrada.get("Terminais"), dictEntrada.get("Estados_Iniciais"), dictEntrada.get("Estados_Aceitacao"), dictEntrada.get("Cadeias"))
+    print(result)
     # if eh_deterministico(automato):
     #     avalia_automato_deterministico(automato)
     # else:
